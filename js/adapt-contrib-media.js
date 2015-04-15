@@ -43,6 +43,12 @@ define(function(require) {
             if (this.model.get('_media').source) {
                 this.$('.media-widget').addClass('external-source');
                 this.setReadyStatus();
+                // We found an issue that only happened on IE8, and only on 1 video. 
+                // This is to fix that issue
+                setTimeout(_.bind(function(){
+                    this.$('.mejs-container').width(this.$('.component-widget').width());
+                    this.$('.mejs-container').height('553px');
+                }, this), 500)
             }
         },
 
